@@ -47,12 +47,12 @@ public Command setVoltagesArcadeCommand(DoubleSupplier drive, DoubleSupplier ste
   public void periodic() {
     // This method will be called once per scheduler run
     io.updateInputs(inputs);
-    Logger.getInstance().processInputs("Drivetrain", inputs);
+    Logger.processInputs("Drivetrain", inputs);
 
     odometry.update(
       odometry.getPoseMeters().getRotation()
       .plus(Rotation2d.fromRadians((inputs.leftVelocityMetersPerSecond - inputs.rightVelocityMetersPerSecond) * 0.020 / Units.inchesToMeters(26))), inputs.leftPositionMeters, inputs.rightPositionMeters);
 
-      Logger.getInstance().recordOutput("Drivebase Pose", odometry.getPoseMeters());
+      Logger.recordOutput("Drivebase Pose", odometry.getPoseMeters());
   }
 }
