@@ -19,6 +19,18 @@ public interface DrivetrainIO {
         public double leftPositionMeters = 0.0;
         public double rightPositionMeters = 0.0;
 
+        public double leftRotationsRad = 0.0;
+        public double rightRotationsRad = 0.0;
+
+        public double leftVelocityRadsPerSecond = 0.0;
+        public double rightVelocityRadsPerSecond = 0.0;
+
+        public double leftVelocityGoalMetersPerSecond = 0.0;
+        public double rightVelocityGoalMetersPerSecond = 0.0;
+
+        public double leftAppliedVolts = 0.0;
+        public double rightAppliedVolts = 0.0;
+
         public double[] leftCurrentAmps = new double[0];
         public double[] leftTempCelcius = new double[0];
         public double[] rightCurrentAmps = new double[0];
