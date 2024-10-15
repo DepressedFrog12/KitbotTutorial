@@ -7,6 +7,7 @@ package frc.robot.Subsystems.Drivetrain;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
+import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.util.Units;
@@ -71,14 +72,30 @@ public class DrivetrainIOSpark implements DrivetrainIO {
         inputs.leftVelocityRadsPerSecond = Units.rotationsPerMinuteToRadiansPerSecond(leftEncoder.getVelocity() / Constants.gearRatio);
         inputs.rightVelocityRadsPerSecond = Units.rotationsPerMinuteToRadiansPerSecond(rightEncoder.getVelocity() / Constants.gearRatio);
 
+        inputs.leftVelocityMetersPerSecond = ((leftEncoder.getVelocity() / Constants.gearRatio) * 2 * Math.PI * Constants.gearRatio);
+        inputs.rightVelocityMetersPerSecond = ((rightEncoder.getVelocity() / Constants.gearRatio) * 2 * Math.PI * Constants.gearRatio);
 
+        inputs.leftAppliedVolts = leftMain.getBusVoltage() * leftMain.getAppliedOutput();
+        inputs.rightAppliedVolts = rightMain.getBusVoltage() * rightMain.getAppliedOutput();
+
+        inputs.leftCurrentAmps = new double[] {leftMain.getOutputCurrent(), leftFollow.getOutputCurrent()};
+        inputs.rightCurrentAmps = new double[] {rightMain.getOutputCurrent(), rightFollow.getOutputCurrent()};
+
+        inputs.leftTempCelcius = new double[] {leftMain.getMotorTemperature(), leftFollow.getMotorTemperature()};
+        inputs.rightTempCelcius = new double[] {rightMain.getMotorTemperature(), rightFollow.getMotorTemperature()};
+
+        inputs.isClosedLoop = isClosedLoop;
     }
 
     @Override
     public void setVolts(double left, double right) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setVolts'");
+        leftMain.setVoltage(left);
+        rightMain.setVoltage(right);
+        
     }
 
-    
+    public void setMetersPerSecond(double left, double right) {
+        leftPID.setReference(Units.radiansPerSecondToRotationsPerMinute(left * Constants.gearRatio), ControlType.kVelocity, 0, Constants.kV);
+        rightPID.setReference(Units.radiansPerSecondToRotationsPerMinute(right * Constants.gearRatio), ControlType.kVelocity, 0, Constants.kV);
+    }
 }

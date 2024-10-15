@@ -35,6 +35,8 @@ public interface DrivetrainIO {
         public double[] leftTempCelcius = new double[0];
         public double[] rightCurrentAmps = new double[0];
         public double[] rightTempCelcius = new double[0];
+
+        public boolean isClosedLoop = false;
     }
     
     public abstract void updateInputs(DrivetrainIOInputs inputs);
