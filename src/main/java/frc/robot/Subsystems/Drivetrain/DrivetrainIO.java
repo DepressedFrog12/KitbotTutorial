@@ -42,4 +42,7 @@ public interface DrivetrainIO {
     public abstract void updateInputs(DrivetrainIOInputs inputs);
 
     public abstract void setVolts(double left, double right);
+
+    public abstract void setMetersPerSecond(double d, double e);
+    
 }

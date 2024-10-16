@@ -18,6 +18,10 @@ public class Constants {
     public static double kS = 0.0;
     public static double kV = 0.0;
 
+    public static double kPSim = 0.2;
+    public static double kDSim = 0.0;
+    public static double kISim = 0.0;;
+
     public static double gearRatio = 8.46;
     public static double wheelRadius = Units.inchesToMeters(3.0);
 

@@ -24,7 +24,7 @@ import java.util.function.BooleanSupplier;
 import org.littletonrobotics.junction.Logger;
 
 public class DrivetrainSubsystem extends SubsystemBase {
-  public final DrivetrainIOSpark io;
+  public final DrivetrainIO io;
   DrivetrainIOInputsAutoLogged inputs = new DrivetrainIOInputsAutoLogged();
 
   DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(), 0, 0);
@@ -49,7 +49,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   /** Creates a new DrivetrainSubsystem. */
-  public DrivetrainSubsystem(DrivetrainIOSpark io) {
+  public DrivetrainSubsystem(DrivetrainIO io) {
     this.io = io;
   }
 

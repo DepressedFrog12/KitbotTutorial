@@ -7,21 +7,37 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Subsystems.Drivetrain.DrivetrainIO;
+import frc.robot.Subsystems.Drivetrain.DrivetrainIOSim;
 import frc.robot.Subsystems.Drivetrain.DrivetrainIOSpark;
 import frc.robot.Subsystems.Drivetrain.DrivetrainSubsystem;
 
 public class RobotContainer {
-  CommandXboxController controller = new CommandXboxController(0);
-
-  DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem(new DrivetrainIOSpark());
-        
+  final DrivetrainSubsystem drive;
+  final CommandXboxController controller = new CommandXboxController(0);
+      
   public RobotContainer() {
-    configureBindings();
+        switch (Constants.currentMode) {
+        case REAL:
+        drive = new DrivetrainSubsystem(new DrivetrainIOSpark());
+        configureBindings();
+        break;
+
+        case SIM:
+        drive = new DrivetrainSubsystem(new DrivetrainIOSim());
+        configureBindings();
+        break;
+        
+        default:
+        drive = new DrivetrainSubsystem(new DrivetrainIOSpark());
+        configureBindings();
+        break;
+  }
   }
 
   private void configureBindings() {
-    drivetrainSubsystem.setDefaultCommand(
-    drivetrainSubsystem.setVoltagesArcadeCommand(
+    drive.setDefaultCommand(
+    drive.setVoltagesArcadeCommand(
         () -> modifyJoystick(controller.getLeftY()),
         () -> modifyJoystick(controller.getRightX())));
     
