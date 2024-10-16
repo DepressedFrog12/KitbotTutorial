@@ -95,6 +95,7 @@ public class DrivetrainIOSpark implements DrivetrainIO {
     }
 
     public void setMetersPerSecond(double left, double right) {
+        isClosedLoop = true;
         leftPID.setReference(Units.radiansPerSecondToRotationsPerMinute(left * Constants.gearRatio), ControlType.kVelocity, 0, Constants.kV);
         rightPID.setReference(Units.radiansPerSecondToRotationsPerMinute(right * Constants.gearRatio), ControlType.kVelocity, 0, Constants.kV);
     }

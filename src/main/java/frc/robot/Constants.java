@@ -20,4 +20,12 @@ public class Constants {
 
     public static double gearRatio = 8.46;
     public static double wheelRadius = Units.inchesToMeters(3.0);
+
+    public static final Mode currentMode = Mode.SIM;
+
+    public static enum Mode {
+        REAL,
+        SIM,
+        REPLAY
+    }
 }
