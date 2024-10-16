@@ -71,7 +71,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void drive(double speed, double angle, boolean isClosedLoop) {
     var wheelSpeeds = DifferentialDrive.arcadeDriveIK(speed, angle, false);
     if (isClosedLoop) {
-      io.setMetersPerSecond(wheelSpeeds.left * 12.0, wheelSpeeds.right * 12.0);
+      io.setMetersPerSecond(wheelSpeeds.left, wheelSpeeds.right);
     } else {
       io.setVolts(wheelSpeeds.left * 12.0, wheelSpeeds.right * 12.0);
     }
