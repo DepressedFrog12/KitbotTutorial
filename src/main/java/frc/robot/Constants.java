@@ -12,6 +12,9 @@ public class Constants {
     public static final int drivetrainLeftMainSparkID = 1;
     public static final int drivetrainRightFollowSparkID = 4;
 
+    public static final int shooterID = 0;
+    public static final int feederID = 1;
+
     public static final double kPReal = 0.2;
     public static final double kDReal = 0.0;
 
