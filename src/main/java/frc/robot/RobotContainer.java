@@ -10,10 +10,15 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Subsystems.Drivetrain.DrivetrainIOSim;
 import frc.robot.Subsystems.Drivetrain.DrivetrainIOSpark;
 import frc.robot.Subsystems.Drivetrain.DrivetrainSubsystem;
+import frc.robot.Subsystems.Shooter.ShooterSubsystem;
+import frc.robot.Subsystems.Shooter.ShooterIO;
+import frc.robot.Subsystems.Shooter.Commands.Intake;
+import frc.robot.Subsystems.Shooter.Commands.Shoot;
 
 public class RobotContainer {
   final DrivetrainSubsystem drive;
   final CommandXboxController controller = new CommandXboxController(0);
+  final ShooterSubsystem shooter = new ShooterSubsystem();
       
   public RobotContainer() {
         switch (Constants.currentMode) {
@@ -39,7 +44,6 @@ public class RobotContainer {
     drive.setVoltagesArcadeCommand(
         () -> modifyJoystick(controller.getLeftY()),
         () -> modifyJoystick(controller.getRightX())));
-    
   }
 
   private double modifyJoystick(double in) {
