@@ -4,46 +4,36 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Subsystems.Drivetrain.DrivetrainIOSim;
 import frc.robot.Subsystems.Drivetrain.DrivetrainIOSpark;
 import frc.robot.Subsystems.Drivetrain.DrivetrainSubsystem;
+import frc.robot.Subsystems.MontyShooter.MontySubsystem;
 import frc.robot.Subsystems.Shooter.ShooterSubsystem;
-import frc.robot.Subsystems.Shooter.ShooterIO;
-import frc.robot.Subsystems.Shooter.Commands.Intake;
-import frc.robot.Subsystems.Shooter.Commands.Shoot;
+import frc.robot.Constants;
 
 public class RobotContainer {
-  final DrivetrainSubsystem drive;
+  DrivetrainSubsystem drive = new DrivetrainSubsystem();
   final CommandXboxController controller = new CommandXboxController(0);
-  final ShooterSubsystem shooter = new ShooterSubsystem();
+  final MontySubsystem monty = new MontySubsystem(new PneumaticHub(31));
+  final ShooterSubsystem shooter;
+
       
   public RobotContainer() {
-        switch (Constants.currentMode) {
-        case REAL:
-        drive = new DrivetrainSubsystem(new DrivetrainIOSpark());
-        configureBindings();
-        break;
-
-        case SIM:
-        drive = new DrivetrainSubsystem(new DrivetrainIOSim());
-        configureBindings();
-        break;
-        
-        default:
-        drive = new DrivetrainSubsystem(new DrivetrainIOSpark());
-        configureBindings();
-        break;
-  }
+    configureBindings();
+    shooter = new ShooterSubsystem();
   }
 
   private void configureBindings() {
+    
     drive.setDefaultCommand(
     drive.setVoltagesArcadeCommand(
         () -> modifyJoystick(controller.getLeftY()),
         () -> modifyJoystick(controller.getRightX())));
+    
   }
 
   private double modifyJoystick(double in) {

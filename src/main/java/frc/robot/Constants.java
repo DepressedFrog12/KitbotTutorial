@@ -43,10 +43,16 @@ public class Constants {
     public static double feederStrength = 0.5;
 
     public static final Mode currentMode = Mode.SIM;
+    public static final Bot currentBot = Bot.MONTY;
 
     public static enum Mode {
         REAL,
         SIM,
         REPLAY
+    }
+
+    public static enum Bot {
+        KITBOT,
+        MONTY
     }
 }

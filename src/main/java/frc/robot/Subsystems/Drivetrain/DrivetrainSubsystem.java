@@ -44,8 +44,18 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   /** Creates a new DrivetrainSubsystem. */
-  public DrivetrainSubsystem(DrivetrainIO io) {
-    this.io = io;
+  public DrivetrainSubsystem() {
+    switch (Constants.currentMode) {
+      case SIM:
+        io = new DrivetrainIOSim();
+        break;
+      case REAL:
+        io = new DrivetrainIOSpark();
+        break;
+      default:
+        io = new DrivetrainIOSim();
+        break;
+    }
   }
 
   @Override
