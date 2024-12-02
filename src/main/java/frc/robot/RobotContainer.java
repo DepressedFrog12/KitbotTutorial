@@ -12,6 +12,11 @@ import frc.robot.Subsystems.Drivetrain.DrivetrainIOSim;
 import frc.robot.Subsystems.Drivetrain.DrivetrainIOSpark;
 import frc.robot.Subsystems.Drivetrain.DrivetrainSubsystem;
 import frc.robot.Subsystems.MontyShooter.MontySubsystem;
+import frc.robot.Subsystems.MontyShooter.Commands.RunFeeder;
+import frc.robot.Subsystems.MontyShooter.Commands.RunIntake;
+import frc.robot.Subsystems.MontyShooter.Commands.RunLauncher;
+import frc.robot.Subsystems.MontyShooter.Commands.ToggleHood;
+import frc.robot.Subsystems.MontyShooter.Commands.ToggleIntake;
 import frc.robot.Subsystems.Shooter.ShooterSubsystem;
 import frc.robot.Constants;
 
@@ -34,6 +39,12 @@ public class RobotContainer {
         () -> modifyJoystick(controller.getLeftY()),
         () -> modifyJoystick(controller.getRightX())));
     
+    controller.rightBumper().onTrue(new ToggleHood(monty));
+    controller.leftBumper().onTrue(new ToggleIntake(monty));
+    controller.rightTrigger().onTrue(new RunIntake(monty, 1));
+    controller.leftTrigger().onTrue(new RunFeeder(monty, -1));
+    controller.a().onTrue(new RunLauncher(monty, -1));
+
   }
 
   private double modifyJoystick(double in) {
