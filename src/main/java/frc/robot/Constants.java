@@ -15,15 +15,15 @@ public class Constants {
     public static final int leftLauncherID = 21;
     public static final int rightLauncherID = 22;
 
-    public static final int leftFeederID = 2;
-    public static final int rightFeederID = 3;
-    public static final int mainFeederID = 4;
+    public static final int leftFeederID = 12;
+    public static final int rightFeederID = 13;
+    public static final int mainFeederID = 11;
 
     public static final int hoodID = 9;
     public static final int intakeID = 8;
 
     public static final int shooterID = 12;
-    public static final int feederID = 11;
+    public static final int feederID = 23;
 
     public static final double kPReal = 0.2;
     public static final double kDReal = 0.0;

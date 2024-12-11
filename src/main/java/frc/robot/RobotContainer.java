@@ -24,12 +24,11 @@ public class RobotContainer {
   DrivetrainSubsystem drive = new DrivetrainSubsystem();
   final CommandXboxController controller = new CommandXboxController(0);
   final MontySubsystem monty = new MontySubsystem(new PneumaticHub(31));
-  final ShooterSubsystem shooter;
+  final ShooterSubsystem finalshooter = new ShooterSubsystem();
 
       
   public RobotContainer() {
     configureBindings();
-    shooter = new ShooterSubsystem();
   }
 
   private void configureBindings() {
@@ -41,9 +40,9 @@ public class RobotContainer {
     
     controller.rightBumper().onTrue(new ToggleHood(monty));
     controller.leftBumper().onTrue(new ToggleIntake(monty));
-    controller.rightTrigger().onTrue(new RunIntake(monty, 1));
-    controller.leftTrigger().onTrue(new RunFeeder(monty, -1));
-    controller.a().onTrue(new RunLauncher(monty, -1));
+    controller.rightTrigger().whileTrue(new RunIntake(monty, 1));
+    controller.leftTrigger().whileTrue(new RunFeeder(monty, -1));
+    controller.a().whileTrue(new RunLauncher(monty, -1));
 
   }
 
