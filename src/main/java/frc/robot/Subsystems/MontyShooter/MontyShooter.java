@@ -14,11 +14,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class MontyShooter implements MontyShooterIO{
-    DCMotorSim feederMotorLeft;
-    DCMotorSim feederMotorRight;
     TalonFX leftLauncher;
     TalonFX rightLauncher;
-
     
     TalonSRX leftIntake;
     TalonSRX rightintake;

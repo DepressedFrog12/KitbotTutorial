@@ -35,7 +35,7 @@ public class RobotContainer {
     
     drive.setDefaultCommand(
     drive.setVoltagesArcadeCommand(
-        () -> modifyJoystick(controller.getLeftY()),
+        () -> modifyJoystick(-controller.getLeftY()),
         () -> modifyJoystick(controller.getRightX())));
     
     controller.rightBumper().onTrue(new ToggleHood(monty));
