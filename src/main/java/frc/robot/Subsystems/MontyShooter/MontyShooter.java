@@ -38,6 +38,9 @@ public class MontyShooter implements MontyShooterIO{
 
         feederMotor = new TalonSRX(feederID);
 
+        hood = hub.makeSolenoid(Constants.hoodID);
+        intake = hub.makeSolenoid(Constants.intakeID);
+
     }
     @Override
     public void setFeederVolts(double volts) {
